@@ -51,7 +51,13 @@ breizhcampRoom.controller('RoomController',
             if ($scope.track) {
                 var nextTalkIndex = $scope.getNextTalkIndex();
                 $scope.currentTalk = $scope.track.talks[nextTalkIndex - 1];
+                programService.getTalk($scope.currentTalk, function(talkDetailled) {
+                    $scope.currentTalk.detail = talkDetailled;
+                });
                 $scope.nextTalk = $scope.track.talks[nextTalkIndex];
+                programService.getTalk($scope.nextTalk, function(talkDetailled) {
+                    $scope.nextTalk.detail = talkDetailled;
+                });
                 $scope.index++;
             }
         };
