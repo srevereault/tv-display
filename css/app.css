@@ -1,0 +1,74 @@
+html {
+    height: 100%;
+
+    background-image:url(../img/background.jpg);
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position: bottom center;
+}
+
+header {
+    background: transparent url(http://www.breizhcamp.org/img/logo.png) no-repeat left center;
+    background-size: 50%;
+    height: 160px;
+    text-align: right;
+    font-size: 65px;
+    line-height: 160px;
+    padding: 20px;
+    color: white;
+    text-shadow: 2px 2px 2px #111;
+}
+
+.day {
+    color: #8800BB;
+    font-size: 32px;
+    text-align: center;
+    text-shadow: 2px 2px 2px #111;
+}
+
+.day .track a {
+    color: #FF6600;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 2px 2px 2px #111;
+}
+
+.room h2 {
+    color: #8800BB;
+    font-size: 40px;
+    text-align: center;
+    text-shadow: 2px 2px 2px #111;
+}
+
+.currentTalk {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
+}
+
+.currentTalk h3 {
+    color: #FF6600;
+    font-size: 80px;
+    text-align: center;
+    margin: 0;
+    text-shadow: 2px 2px 2px #111;
+}
+
+.currentTalk h3 small {
+    font-size: 20px;
+}
+
+.nextTalk {
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+}
+
+.nextTalk h3 {
+    color: #FFFF66;
+    font-size: 32px;
+    margin: 0;
+    text-shadow: 2px 2px 2px #111;
+}

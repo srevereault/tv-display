@@ -1,0 +1,8 @@
+
+<div ng-repeat="day in days" class="day" ng-init="dayIndex=$index">
+    {{day.date}}
+    <div ng-repeat="track in day.tracks" class="track">
+        <a ng-href="#/day/{{dayIndex}}/room/{{$index}}">{{track.type}}</a>
+    </div>
+</div>
+
