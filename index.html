@@ -5,7 +5,7 @@
     <meta charset="UTF-8" lang="fr" />
 
     <link href="css/app.css" rel="stylesheet"/>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.3/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
 </head>
 
 <body ng-app="BreizhcampRoom">
@@ -13,7 +13,7 @@
         <span class="time" ng-controller="TimeController">{{time}}</span>
     </header>
 
-    <article ng-view></article>
+    <article ng-view ng-animate="{enter: 'view-enter'}"></article>
 
     <footer></footer>
 

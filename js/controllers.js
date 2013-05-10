@@ -6,8 +6,6 @@ breizhcampRoom.controller('TimeController',
         $scope.schedule = function() {
             $scope.time = $filter('date')(new Date(), "HH:mm");
 
-            $rootScope.$broadcast('timeChanged');
-
             $timeout($scope.schedule, 60000);
         };
 
@@ -32,7 +30,7 @@ breizhcampRoom.controller('RoomsController',
 );
 
 breizhcampRoom.controller('RoomController',
-    function RoomController($scope, $routeParams, $filter, programService) {
+    function RoomController($scope, $routeParams, $location, $filter, $timeout, programService) {
 
         $scope.loading = true;
 
@@ -58,13 +56,13 @@ breizhcampRoom.controller('RoomController',
                 programService.getTalk($scope.nextTalk, function(talkDetailled) {
                     $scope.nextTalk.detail = talkDetailled;
                 });
-                $scope.index++;
+
+                $timeout(function() {
+                    var nextTrack = (parseInt($routeParams.roomId) + 1) % $scope.program.jours[parseInt($routeParams.dayId)].tracks.length;
+                    $location.path("/day/" + $routeParams.dayId + "/room/" + nextTrack);
+                }, 8000);
             }
         };
-
-        $scope.$on('timeChanged', function() {
-            $scope.getTalks();
-        });
 
         programService.getProgram(function(program) {
             $scope.program = program;
@@ -75,6 +73,7 @@ breizhcampRoom.controller('RoomController',
 
             $scope.loading = false;
         });
+
 
     }
 );
