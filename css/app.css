@@ -43,7 +43,7 @@ header {
 
 .currentTalk {
     position: fixed;
-    top: 50%;
+    top: 40%;
     left: 0;
     right: 0;
 }
@@ -58,6 +58,39 @@ header {
 
 .currentTalk h3 small {
     font-size: 20px;
+}
+
+.currentTalk .speakers {
+    text-align: center;
+    margin: auto;
+    display: table;
+}
+
+.currentTalk .speakers .speaker {
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.4);
+    border-left: 1px solid rgba(0, 0, 0, 0.4);
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.currentTalk .speakers .speaker img {
+    max-width: 150px;
+    height: 150px;
+}
+
+.currentTalk .speakers .speaker .name {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #ffffff !important;
+    position: relative;
+    overflow: hidden;
+    bottom: 30px;
+    height: 25px;
+    line-height: 1.2em;
 }
 
 .nextTalk {
