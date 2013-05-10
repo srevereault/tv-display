@@ -42,6 +42,23 @@ header {
     text-shadow: 2px 2px 2px #111;
 }
 
+.zoom {
+    animation:zoomAnim 1000ms linear 0ms;
+    -webkit-animation:zoomAnim 1000ms linear 0ms;
+}
+
+@keyframes zoomAnim
+{
+    from {transform: translate(1000px)}
+    to   {transform: translate(0px)}
+}
+
+@-webkit-keyframes zoomAnim /* Safari and Chrome */
+{
+    from {transform: translate(1000px)}
+    to   {transform: translate(0px)}
+}
+
 .talk h3 {
     color: #FF6600;
     font-size: 20px;
