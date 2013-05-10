@@ -12,5 +12,9 @@ breizhcampRoom.config(function($routeProvider) {
         when('/day/:dayId/room/:roomId', {
             controller: 'RoomController',
             templateUrl: 'partials/room.html'
+        }).
+        when('/day/:dayId', {
+            controller: 'DayController',
+            templateUrl: 'partials/day.html'
         });
 });
