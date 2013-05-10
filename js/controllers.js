@@ -6,6 +6,8 @@ breizhcampRoom.controller('TimeController',
         $scope.schedule = function() {
             $scope.time = $filter('date')(new Date(), "HH:mm");
 
+            $rootScope.$broadcast('timeChanged');
+
             $timeout($scope.schedule, 60000);
         };
 

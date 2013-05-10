@@ -42,6 +42,51 @@ header {
     text-shadow: 2px 2px 2px #111;
 }
 
+.talk h3 {
+    color: #FF6600;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    text-shadow: 2px 2px 2px #111;
+}
+
+.talk h3 small {
+    font-size: 10px;
+}
+
+.talk .speakers {
+    text-align: center;
+    margin: auto;
+    display: table;
+}
+
+.talk .speakers .speaker {
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.4);
+    border-left: 1px solid rgba(0, 0, 0, 0.4);
+    width: 150px;
+    height: 100px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.talk .speakers .speaker img {
+    max-width: 100px;
+    height: 100px;
+}
+
+.talk .speakers .speaker .name {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #ffffff !important;
+    position: relative;
+    overflow: hidden;
+    bottom: 30px;
+    height: 25px;
+    line-height: 1.2em;
+}
+
 .currentTalk {
     position: fixed;
     top: 40%;
