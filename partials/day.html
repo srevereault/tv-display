@@ -1,7 +1,9 @@
-<div class="talk" ng-repeat="currentTalk in currentTalks">
+<div class="{{{true:'currentTalk', false:'talk'}[currentTalk.css === 'zoom']}} {{currentTalk.css}}"
+     ng-repeat="currentTalk in currentTalks"
+     ng-show="currentTalk.css !== 'unzoom'">
     <h3>{{currentTalk.title}} <small>(depuis {{currentTalk.time}})</small></h3>
     <div class="speakers">
-        <div class="speaker" ng-repeat="speaker in currentTalk.detail.speakers" >
+        <div class="speaker"ng-repeat="speaker in currentTalk.detail.speakers" >
             <img ng-src="{{speaker.avatar}}">
             <div class="name">{{speaker.fullname}}</div>
         </div>

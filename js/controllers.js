@@ -32,7 +32,10 @@ breizhcampRoom.controller('RoomsController',
 );
 
 breizhcampRoom.controller('DayController',
-    function RoomController($scope, $routeParams, $filter, programService) {
+    function ($scope, $routeParams, $filter, programService, $timeout, $log) {
+
+        $scope.timeWithAll = 20000;
+        $scope.timeWithOne = 10000;
 
         $scope.loading = true;
 
@@ -54,7 +57,6 @@ breizhcampRoom.controller('DayController',
                 $scope.nextTalks = [];
 
                 angular.forEach($scope.tracks, function(track) {
-                    console.log(track);
                     var nextTalkIndex = $scope.getNextTalkIndex(track);
                     $scope.currentTalks.push(track.talks[nextTalkIndex - 1]);
                     programService.getTalk(track.talks[nextTalkIndex - 1], function(talkDetailled) {
@@ -62,6 +64,38 @@ breizhcampRoom.controller('DayController',
                     });
                     $scope.nextTalks.push(track.talks[nextTalkIndex]);
                 });
+            }
+        };
+
+        $scope.zoomOneTalk = function(index) {
+            angular.forEach($scope.currentTalks, function(talk) {
+                talk.css = 'unzoom';
+            });
+            $scope.currentTalks[index].css = 'zoom';
+        };
+
+        $scope.unzoomAll = function() {
+            angular.forEach($scope.currentTalks, function(talk) {
+                talk.css = undefined;
+            });
+        };
+
+        $scope.firstZoom = function() {
+            $log.info('firstZoom');
+            $scope.currentIndex = 0;
+            $scope.zoomOneTalk($scope.currentIndex);
+            $timeout($scope.nextZoom, $scope.timeWithOne);
+        };
+
+        $scope.nextZoom = function() {
+            $log.info('nextZoom');
+            $scope.currentIndex = $scope.currentIndex + 1;
+            if ($scope.currentIndex < $scope.currentTalks.length) {
+                $scope.zoomOneTalk($scope.currentIndex);
+                $timeout($scope.nextZoom, $scope.timeWithOne);
+            } else {
+                $scope.unzoomAll();
+                $timeout($scope.firstZoom, $scope.timeWithAll);
             }
         };
 
@@ -77,6 +111,11 @@ breizhcampRoom.controller('DayController',
             $scope.tracks = program.jours[parseInt($routeParams.dayId)].tracks;
 
             $scope.getTalks();
+
+
+            $timeout(function() {
+                $scope.firstZoom();
+            }, $scope.timeWithAll);
 
             $scope.loading = false;
         });
