@@ -55,8 +55,8 @@ header {
 
 @-webkit-keyframes zoomAnim /* Safari and Chrome */
 {
-    from {transform: translate(1000px)}
-    to   {transform: translate(0px)}
+    from {-webkit-transform: translate(1000px)}
+    to   {-webkit-transform: translate(0px)}
 }
 
 .talk h3 {
