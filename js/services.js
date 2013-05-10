@@ -46,4 +46,15 @@ breizhcampRoom.service('programService', function ProgramService($http) {
             }
         }
     }
+
+    self.getNextTalkIndex = function(track) {
+        var index = 0;
+        var time = new Date().getHours() * 100 + new Date().getMinutes();
+        angular.forEach(track.talks, function(talk) {
+            if (parseInt(talk.time.replace(':','')) < time) {
+                index++;
+            }
+        });
+        return index;
+    };
 });

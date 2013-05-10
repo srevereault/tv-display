@@ -39,17 +39,6 @@ breizhcampRoom.controller('DayController',
 
         $scope.loading = true;
 
-        $scope.getNextTalkIndex = function(track) {
-            var index = 0;
-            var time = new Date().getHours() * 100 + new Date().getMinutes();
-            angular.forEach(track.talks, function(talk) {
-                if (parseInt(talk.time.replace(':','')) < time) {
-                    index++;
-                }
-            });
-            return index;
-        };
-
         $scope.getTalks = function() {
 
             if ($scope.tracks) {
@@ -57,7 +46,7 @@ breizhcampRoom.controller('DayController',
                 $scope.nextTalks = [];
 
                 angular.forEach($scope.tracks, function(track) {
-                    var nextTalkIndex = $scope.getNextTalkIndex(track);
+                    var nextTalkIndex = programService.getNextTalkIndex(track);
                     $scope.currentTalks.push(track.talks[nextTalkIndex - 1]);
                     programService.getTalk(track.talks[nextTalkIndex - 1], function(talkDetailled) {
                         track.talks[nextTalkIndex - 1].detail = talkDetailled;
@@ -128,20 +117,9 @@ breizhcampRoom.controller('RoomController',
 
         $scope.loading = true;
 
-        $scope.getNextTalkIndex = function() {
-            var index = 0;
-            var time = new Date().getHours() * 100 + new Date().getMinutes();
-            angular.forEach($scope.track.talks, function(talk) {
-                if (parseInt(talk.time.replace(':','')) < time) {
-                    index++;
-                }
-            });
-            return index;
-        };
-
         $scope.getTalks = function() {
             if ($scope.track) {
-                var nextTalkIndex = $scope.getNextTalkIndex();
+                var nextTalkIndex = programService.getNextTalkIndex($scope.track);
                 $scope.currentTalk = $scope.track.talks[nextTalkIndex - 1];
                 programService.getTalk($scope.currentTalk, function(talkDetailled) {
                     $scope.currentTalk.detail = talkDetailled;
