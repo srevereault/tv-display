@@ -112,6 +112,59 @@ breizhcampRoom.controller('DayController',
     }
 );
 
+breizhcampRoom.controller('Day2Controller',
+    function ($scope, $routeParams, $filter, programService, $timeout, $log) {
+
+        $scope.loading = true;
+        $scope.highlightedIndex = -3;
+
+        $scope.getTalks = function() {
+
+            if ($scope.tracks) {
+                $scope.trackTalks = [];
+
+                angular.forEach($scope.tracks, function(track) {
+
+                    var trackTalk = { type: track.type };
+
+                    var nextTalkIndex = programService.getNextTalkIndex(track);
+                    trackTalk.currentTalk = track.talks[nextTalkIndex - 1];
+                    programService.getTalk(track.talks[nextTalkIndex - 1], function(talkDetailled) {
+                        track.talks[nextTalkIndex - 1].detail = talkDetailled;
+                    });
+
+                    trackTalk.nextTalk = track.talks[nextTalkIndex];
+
+                    $scope.trackTalks.push(trackTalk);
+                });
+            }
+        };
+
+        $scope.zoom = function() {
+            // 2 fake indexes to show all the talks together
+            $scope.highlightedIndex = ($scope.highlightedIndex + 1) % ($scope.trackTalks.length + 2);
+            $timeout($scope.zoom, 10000);
+        };
+
+        $scope.$on('timeChanged', function() {
+            $scope.getTalks();
+        });
+
+        programService.getProgram(function(program) {
+            $scope.program = program;
+
+            $scope.tracks = program.jours[parseInt($routeParams.dayId)].tracks;
+
+            $scope.getTalks();
+
+            $scope.zoom();
+
+            $scope.loading = false;
+        });
+
+    }
+);
+
 breizhcampRoom.controller('RoomController',
     function RoomController($scope, $routeParams, $location, $filter, $timeout, programService) {
 

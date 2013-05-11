@@ -1,0 +1,25 @@
+
+<div class="trackTalks">
+
+    <div ng-repeat="trackTalk in trackTalks" class="trackTalk" ng-class="{highlighted: $index == highlightedIndex}">
+
+        <h2>Track "{{trackTalk.type}}"</h2>
+
+        <div class="currentTalk {{trackTalk.currentTalk.format}}" ng-show="trackTalk.currentTalk">
+            <h3>{{trackTalk.currentTalk.title}} <small>(depuis {{trackTalk.currentTalk.time}})</small></h3>
+            <div class="speakers">
+                <div class="speaker" ng-repeat="speaker in trackTalk.currentTalk.detail.speakers" >
+                    <div class="icon"><img ng-src="{{speaker.avatar}}" /></div>
+                    {{speaker.fullname}}
+                </div>
+            </div>
+        </div>
+
+        <div class="nextTalk {{trackTalk.nextTalk.format}}" ng-show="trackTalk.nextTalk">
+            <h3>A suivre...<br/>{{trackTalk.nextTalk.time}} : <i>{{trackTalk.nextTalk.title}}</i></h3>
+        </div>
+
+    </div>
+
+</div>
+

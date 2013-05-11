@@ -168,3 +168,167 @@ header {
     margin: 0;
     text-shadow: 2px 2px 2px #111;
 }
+
+
+/* Day version 3 */
+
+.trackTalks {
+    text-align: center;
+}
+
+.trackTalk {
+    width: 210px;
+    height: 400px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid #444;
+    border-radius: 15px;
+}
+
+.trackTalk h2 {
+    color: #8800BB;
+    font-size: 20px;
+    text-align: center;
+    height: 50px;
+    text-shadow: 2px 2px 2px #111;
+}
+
+.trackTalk .currentTalk {
+    position: relative;
+    margin: 0;
+    top: auto;
+    height: 200px;
+}
+
+.trackTalk .currentTalk h3 {
+    color: #FF6600;
+    font-size: 24px;
+    text-align: center;
+    margin: 10px;
+}
+
+.trackTalk .currentTalk h3 small {
+    font-size: 12px;
+}
+
+.trackTalk .currentTalk .speakers {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+}
+
+.trackTalk .currentTalk .speaker {
+    width: 200px;
+    height: 30px;
+    float: none;
+    border: 0;
+    margin: 2px 0;
+    text-align: left;
+    background-color: transparent;
+    line-height: 30px;
+    color: #FEFEFE;
+    vertical-align: top;
+    padding-left: 10px;
+}
+
+.trackTalk .currentTalk .speaker .icon {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    display: inline-block;
+    background-color: #222;
+    border: 1px solid #444;
+}
+
+.trackTalk .currentTalk .speaker img {
+    max-width: 30px;
+    height: 30px;
+}
+
+.trackTalk .nextTalk {
+    position: relative;
+    margin-top: 50px;
+}
+
+.trackTalk .nextTalk h3 {
+    font-size: 16px;
+}
+
+.trackTalk.highlighted {
+    position: absolute;
+    left: 5%;
+    top: 200px;
+    right: 5%;
+    bottom: 5%;
+    z-index: 2;
+    width: auto;
+    height: auto;
+    background-color: #222;
+
+    animation:highlight 500ms linear 0ms;
+    -webkit-animation:highlight 500ms linear 0ms;
+}
+
+.trackTalk.highlighted h2 {
+    font-size: 32px;
+}
+
+.trackTalk.highlighted .currentTalk h3 {
+    font-size: 60px;
+}
+
+.trackTalk.highlighted .currentTalk h3 small {
+    font-size: 24px;
+}
+
+.trackTalk.highlighted .currentTalk .speaker {
+    height: 70px;
+    line-height: 70px;
+    font-size: 30px;
+    width: auto;
+}
+
+.trackTalk.highlighted .currentTalk .speaker .icon {
+    width: 70px;
+    height: 70px;
+}
+.trackTalk.highlighted .currentTalk .speaker img {
+    max-width: 70px;
+    height: 70px;
+}
+
+.trackTalk.highlighted .nextTalk {
+    margin-top: 150px;
+    text-align: right;
+}
+
+.trackTalk.highlighted .nextTalk h3 {
+    font-size: 28px;
+}
+
+@keyframes highlight
+{
+    from {
+        opacity: 0.1;
+        transform: rotate(90deg) scale(0.1);
+    }
+    to   {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes highlight /* Safari and Chrome */
+{
+    from {
+        opacity: 0.1;
+        -webkit-transform: rotate(90deg) scale(0.1);
+    }
+    to   {
+        opacity: 1;
+        -webkit-transform: scale(1);
+    }
+}
