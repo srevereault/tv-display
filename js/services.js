@@ -58,3 +58,18 @@ breizhcampRoom.service('programService', function ProgramService($http) {
         return index;
     };
 });
+
+
+breizhcampRoom.service('twitterService', function($http) {
+    var self = this;
+
+    self.getTweets = function(callback) {
+
+        $http.jsonp("https://search.twitter.com/search.json?q=breizhcamp&rpp=20&callback=JSON_CALLBACK")
+            .success(function(data) {
+                callback(data.results);
+            });
+
+    }
+
+});

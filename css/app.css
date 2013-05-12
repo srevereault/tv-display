@@ -1,5 +1,6 @@
 html {
     height: 100%;
+    font-family: "Helvetica Neue" Helvetica;
 
     background-image:url(../img/background.jpg);
     background-repeat:no-repeat;
@@ -19,8 +20,18 @@ header {
     text-shadow: 2px 2px 2px #111;
 }
 
-.day,
-.day a {
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    color: white;
+}
+
+/* Landing page */
+
+.day {
     color: #8800BB;
     font-size: 32px;
     text-align: center;
@@ -28,6 +39,14 @@ header {
 }
 
 .day a {
+    color: #8800BB;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 2px 2px 2px #111;
+}
+
+.day .track a {
     color: #FF6600;
     font-size: 20px;
     text-align: center;
@@ -158,7 +177,7 @@ header {
 
 .nextTalk {
     position: fixed;
-    bottom: 2%;
+    bottom: 100px;
     right: 2%;
 }
 
@@ -170,7 +189,7 @@ header {
 }
 
 
-/* Day version 3 */
+/* Day version horizontale */
 
 .trackTalks {
     text-align: center;
@@ -262,7 +281,7 @@ header {
     left: 5%;
     top: 200px;
     right: 5%;
-    bottom: 5%;
+    bottom: 100px;
     z-index: 2;
     width: auto;
     height: auto;
@@ -331,4 +350,47 @@ header {
         opacity: 1;
         -webkit-transform: scale(1);
     }
+}
+
+
+/* Tweetwall */
+
+.tweetwall {
+    position: absolute;
+    width: 10000px;
+    transition: left 0.5s ease;
+}
+
+.tweet {
+    float: left;
+    width: 280px;
+    height: 80px;
+    border: 1px solid #AAA;
+    border-radius: 10px;
+    margin: 5px 10px;
+    padding: 5px;
+    background-color: #777;
+    font-size: 15px;
+}
+
+.tweet .icon {
+    float: left;
+    margin: 5px 5px 0 0;
+}
+
+.tweet .icon img {
+    height: 26px;
+}
+
+.tweet .user {
+    font-size: 12px;
+    font-style: italic;
+    color: #DEDEDE;
+}
+
+.tweet .time {
+    display: block;
+    font-size: 10px;
+    margin-top: 2px;
+    color: #DEDEDE;
 }

@@ -15,29 +15,22 @@ breizhcampRoom.controller('TimeController',
     }
 );
 
-breizhcampRoom.controller('RoomsController',
-    function RoomsController($scope, programService) {
-
-        $scope.loading = true;
+breizhcampRoom.controller('LandingController',
+    function ($scope, programService) {
 
         programService.getProgram(function(program) {
             $scope.program = program;
-
             $scope.days = $scope.program.jours;
-
-            $scope.loading = false;
         });
 
     }
 );
 
-breizhcampRoom.controller('DayController',
+breizhcampRoom.controller('DayVerticalController',
     function ($scope, $routeParams, $filter, programService, $timeout, $log) {
 
         $scope.timeWithAll = 20000;
         $scope.timeWithOne = 10000;
-
-        $scope.loading = true;
 
         $scope.getTalks = function() {
 
@@ -106,16 +99,14 @@ breizhcampRoom.controller('DayController',
                 $scope.firstZoom();
             }, $scope.timeWithAll);
 
-            $scope.loading = false;
         });
 
     }
 );
 
-breizhcampRoom.controller('Day2Controller',
+breizhcampRoom.controller('DayHorizontalController',
     function ($scope, $routeParams, $filter, programService, $timeout, $log) {
 
-        $scope.loading = true;
         $scope.highlightedIndex = -3;
 
         $scope.getTalks = function() {
@@ -158,17 +149,13 @@ breizhcampRoom.controller('Day2Controller',
             $scope.getTalks();
 
             $scope.zoom();
-
-            $scope.loading = false;
         });
 
     }
 );
 
-breizhcampRoom.controller('RoomController',
-    function RoomController($scope, $routeParams, $location, $filter, $timeout, programService) {
-
-        $scope.loading = true;
+breizhcampRoom.controller('TrackController',
+    function ($scope, $routeParams, $location, $filter, $timeout, programService) {
 
         $scope.getTalks = function() {
             if ($scope.track) {
@@ -178,27 +165,47 @@ breizhcampRoom.controller('RoomController',
                     $scope.currentTalk.detail = talkDetailled;
                 });
                 $scope.nextTalk = $scope.track.talks[nextTalkIndex];
-                programService.getTalk($scope.nextTalk, function(talkDetailled) {
-                    $scope.nextTalk.detail = talkDetailled;
-                });
-
-                $timeout(function() {
-                    var nextTrack = (parseInt($routeParams.roomId) + 1) % $scope.program.jours[parseInt($routeParams.dayId)].tracks.length;
-                    $location.path("/day/" + $routeParams.dayId + "/room/" + nextTrack);
-                }, 8000);
             }
         };
 
+        $scope.$on('timeChanged', function() {
+            $scope.getTalks();
+        });
+
         programService.getProgram(function(program) {
             $scope.program = program;
-
             $scope.track = $scope.program.jours[parseInt($routeParams.dayId)].tracks[parseInt($routeParams.roomId)];
 
             $scope.getTalks();
-
-            $scope.loading = false;
         });
 
+    }
+);
 
+breizhcampRoom.controller('TweetsController',
+    function ($scope, $timeout, twitterService) {
+
+        $scope.left = 0;
+        $scope.tweetwall = angular.element('.tweetwall');
+
+        $scope.getTweets = function() {
+            twitterService.getTweets(function(tweets) {
+                $scope.left = 0;
+                $scope.tweets = tweets;
+            })
+        };
+
+        $scope.scroll = function() {
+            $scope.tweetwall.css('left', -$scope.left + "px");
+            $scope.left += 312;
+            $timeout($scope.scroll, 5000);
+        }
+
+        $scope.$on('timeChanged', function() {
+            $scope.getTweets();
+        });
+
+        $scope.getTweets();
+        $scope.scroll();
     }
 );

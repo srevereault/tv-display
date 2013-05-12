@@ -1,0 +1,13 @@
+
+<div ng-repeat="day in days" class="day" ng-init="dayIndex=$index">
+    {{day.date}}
+
+    <a ng-href="#/day/{{dayIndex}}/vertical">vertical</a>
+    <a ng-href="#/day/{{dayIndex}}/horizontal">horizontal</a>
+
+    <div ng-repeat="track in day.tracks" class="track">
+        <a ng-href="#/day/{{dayIndex}}/track/{{$index}}">{{track.type}}</a>
+    </div>
+
+</div>
+
