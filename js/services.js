@@ -66,6 +66,9 @@ breizhcampRoom.service('programService', function ProgramService($http) {
                 index++;
             }
         });
+        if (index === 0) {
+            index = 1;
+        }
         return index;
     };
 });
