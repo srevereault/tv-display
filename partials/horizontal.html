@@ -9,11 +9,12 @@
             <div class="talkDetail" ng-show="$index == highlightedIndex">
                 <p ng-bind-html-unsafe="getSafeDescription(trackTalk.currentTalk.detail.description)"></p>
             </div>
-            <div class="speakers">
-                <div class="speaker" ng-repeat="speaker in trackTalk.currentTalk.detail.speakers" >
-                    <div class="icon"><img ng-src="{{speaker.avatar}}" /></div>
-                    {{speaker.fullname}}
-                </div>
+        </div>
+
+        <div class="speakers">
+            <div class="speaker" ng-repeat="speaker in trackTalk.currentTalk.detail.speakers" >
+                <div class="icon"><img ng-src="{{speaker.avatar}}" /></div>
+                {{speaker.fullname}}
             </div>
         </div>
 

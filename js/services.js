@@ -13,6 +13,17 @@ breizhcampRoom.service('programService', function ProgramService($http) {
         else {
             $http.jsonp("http://cfp.breizhcamp.org/programme/jsonp?callback=JSON_CALLBACK")
                 .success(function(data) {
+                    angular.forEach(data.programme.jours, function(jour) {
+                        var indexToRemove = undefined;
+                        angular.forEach(jour.tracks, function(track, index) {
+                            if (track.type === "keynote") {
+                                indexToRemove = index;
+                            }
+                        });
+                        if (indexToRemove !== undefined) {
+                            jour.tracks.splice(indexToRemove, 1);
+                        }
+                    });
                     self.program = data.programme;
                     callback(self.program);
                 });
