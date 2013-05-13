@@ -107,6 +107,16 @@ breizhcampRoom.controller('DayVerticalController',
 breizhcampRoom.controller('DayHorizontalController',
     function ($scope, $routeParams, $filter, programService, $timeout, $log) {
 
+
+        $scope.converter = new Markdown.getSanitizingConverter();
+
+        $scope.getSafeDescription = function(description) {
+            if (description) {
+                return $scope.converter.makeHtml(description);
+            }
+            return "";
+        };
+
         $scope.highlightedIndex = -3;
 
         $scope.getTalks = function() {

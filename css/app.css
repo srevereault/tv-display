@@ -196,6 +196,7 @@ footer {
 }
 
 .trackTalk {
+    position:relative;
     width: 210px;
     height: 400px;
     display: inline-block;
@@ -268,12 +269,18 @@ footer {
 }
 
 .trackTalk .nextTalk {
-    position: relative;
-    margin-top: 50px;
+    position: absolute;
+    bottom:10px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .trackTalk .nextTalk h3 {
     font-size: 16px;
+}
+
+.trackTalk .currentTalk .talkDetail {
+    color: #ffffff;
 }
 
 .trackTalk.highlighted {
@@ -303,6 +310,10 @@ footer {
     font-size: 24px;
 }
 
+.trackTalk.highlighted .currentTalk .speakers {
+    position: static;
+}
+
 .trackTalk.highlighted .currentTalk .speaker {
     height: 70px;
     line-height: 70px;
@@ -320,7 +331,9 @@ footer {
 }
 
 .trackTalk.highlighted .nextTalk {
-    margin-top: 150px;
+    position: absolute;
+    bottom:10px;
+    margin-right: 5px;
     text-align: right;
 }
 

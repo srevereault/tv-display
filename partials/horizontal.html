@@ -6,6 +6,9 @@
 
         <div class="currentTalk {{trackTalk.currentTalk.format}}" ng-show="trackTalk.currentTalk">
             <h3>{{trackTalk.currentTalk.title}} <small>(début à {{trackTalk.currentTalk.time}})</small></h3>
+            <div class="talkDetail" ng-show="$index == highlightedIndex">
+                <p ng-bind-html-unsafe="getSafeDescription(trackTalk.currentTalk.detail.description)"></p>
+            </div>
             <div class="speakers">
                 <div class="speaker" ng-repeat="speaker in trackTalk.currentTalk.detail.speakers" >
                     <div class="icon"><img ng-src="{{speaker.avatar}}" /></div>
