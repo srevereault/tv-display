@@ -327,6 +327,17 @@ footer {
     margin:0px;
 }
 
+.trackTalk .currentTalk .talkDetail ul {
+    margin:0px;
+    list-style-type: none;
+}
+
+.trackTalk .currentTalk .talkDetail a,
+.trackTalk .currentTalk .talkDetail a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
 .trackTalk.highlighted {
     position: absolute;
     left: 5%;
@@ -400,11 +411,11 @@ footer {
 {
     from {
         opacity: 0.1;
-        transform: rotate(90deg) scale(0.1);
+        /*transform: rotate(90deg) scale(0.1);*/
     }
     to   {
         opacity: 1;
-        transform: scale(1);
+        /*transform: scale(1);*/
     }
 }
 
@@ -412,11 +423,11 @@ footer {
 {
     from {
         opacity: 0.1;
-        -webkit-transform: rotate(90deg) scale(0.1);
+        /*-webkit-transform: rotate(90deg) scale(0.1);*/
     }
     to   {
         opacity: 1;
-        -webkit-transform: scale(1);
+        /*-webkit-transform: scale(1);*/
     }
 }
 
@@ -427,6 +438,7 @@ footer {
     position: absolute;
     width: 10000px;
     transition: left 0.5s ease;
+    -webkit-transition: left 0.5s ease;
 }
 
 .tweet {
