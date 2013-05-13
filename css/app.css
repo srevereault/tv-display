@@ -10,11 +10,11 @@ html {
 
 header {
     background: transparent url(http://www.breizhcamp.org/img/logo.png) no-repeat left center;
-    background-size: 50%;
-    height: 160px;
+    background-size: contain;
+    height: auto;
     text-align: right;
     font-size: 65px;
-    line-height: 160px;
+    line-height: inherit;
     padding: 20px;
     color: white;
     text-shadow: 2px 2px 2px #111;
@@ -197,7 +197,7 @@ footer {
 
 .trackTalk {
     position:relative;
-    width: 210px;
+    width: 17%;
     height: 400px;
     display: inline-block;
     vertical-align: top;
@@ -209,10 +209,46 @@ footer {
 
 .trackTalk h2 {
     color: #8800BB;
-    font-size: 20px;
     text-align: center;
     height: 50px;
     text-shadow: 2px 2px 2px #111;
+}
+
+@media screen and (max-width:640px ) {
+    .trackTalk h2 {
+        font-size: 14px;
+    }
+    .trackTalk .currentTalk h3 {
+        font-size: 16px;
+    }
+
+}
+
+@media screen and (min-width:640px) and (max-width:800px) {
+    .trackTalk h2 {
+        font-size: 16px;
+    }
+    .trackTalk .currentTalk h3 {
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width:800px) and (max-width:1200px) {
+    .trackTalk h2 {
+        font-size: 18px;
+    }
+    .trackTalk .currentTalk h3 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width:1200px) {
+    .trackTalk h2 {
+        font-size: 20px;
+    }
+    .trackTalk .currentTalk h3 {
+        font-size: 22px;
+    }
 }
 
 .trackTalk .currentTalk {
@@ -224,7 +260,6 @@ footer {
 
 .trackTalk .currentTalk h3 {
     color: #FF6600;
-    font-size: 22px;
     text-align: center;
     margin: 5px;
 }
@@ -280,15 +315,22 @@ footer {
 }
 
 .trackTalk .currentTalk .talkDetail {
-    height: 4.5em;
+    height: 6em;
     overflow-y: hidden;
     color: #ffffff;
+    line-height: 1.5em;
+    margin-left:10px;
+    margin-right: 10px;
+}
+
+.trackTalk .currentTalk .talkDetail p {
+    margin:0px;
 }
 
 .trackTalk.highlighted {
     position: absolute;
     left: 5%;
-    top: 200px;
+    top: 120px;
     right: 5%;
     bottom: 100px;
     z-index: 2;
@@ -301,18 +343,22 @@ footer {
 }
 
 .trackTalk.highlighted h2 {
-    font-size: 32px;
+    font-size: 28px;
+    height:1.5em;
+    margin-top:10px;
+    margin-bottom:0px;
 }
 
 .trackTalk.highlighted .currentTalk {
 }
 
 .trackTalk.highlighted .currentTalk h3 {
-    font-size: 60px;
+    font-size: 40px;
+    margin-bottom:15px;
 }
 
 .trackTalk.highlighted .currentTalk h3 small {
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .trackTalk.highlighted .speakers {
