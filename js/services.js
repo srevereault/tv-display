@@ -3,6 +3,8 @@
 breizhcampRoom.service('programService', function ProgramService($http) {
     var self = this;
 
+    var timeBeforeTalkToDisplay = 20;
+
     self.program = null;
 
     self.getProgram = function(callback) {
@@ -56,13 +58,19 @@ breizhcampRoom.service('programService', function ProgramService($http) {
                     });
             }
         }
-    }
+    };
 
     self.getNextTalkIndex = function(track) {
         var index = 0;
-        var time = new Date().getHours() * 100 + new Date().getMinutes();
+        var minutes = new Date().getMinutes() + timeBeforeTalkToDisplay;
+        var hours = new Date().getHours();
+        while (minutes >= 60) {
+            minutes = minutes - 60;
+            hours = hours + 1;
+        }
+        var time = hours * 100 + minutes;
         angular.forEach(track.talks, function(talk) {
-            if (parseInt(talk.time.replace(':','')) < time) {
+            if (parseInt(talk.time.replace(':','')) <= time) {
                 index++;
             }
         });
