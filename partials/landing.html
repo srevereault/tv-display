@@ -5,8 +5,8 @@
     <a ng-href="#/day/{{dayIndex}}/vertical">vertical</a>
     <a ng-href="#/day/{{dayIndex}}/horizontal">horizontal</a>
 
-    <div ng-repeat="track in day.tracks" class="track">
-        <a ng-href="#/day/{{dayIndex}}/track/{{$index}}">{{track.type}}</a>
+    <div ng-repeat="room in day.rooms" class="track">
+        <a ng-href="#/day/{{dayIndex}}/room/{{$index}}">{{room.name}}</a>
     </div>
 
 </div>

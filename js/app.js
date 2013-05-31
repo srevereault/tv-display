@@ -9,9 +9,9 @@ breizhcampRoom.config(function($routeProvider) {
             controller: 'LandingController',
             templateUrl: 'partials/landing.html'
         }).
-        when('/day/:dayId/track/:roomId', {
-            controller: 'TrackController',
-            templateUrl: 'partials/track.html'
+        when('/day/:dayId/room/:roomId', {
+            controller: 'RoomController',
+            templateUrl: 'partials/room.html'
         }).
         when('/day/:dayId/vertical', {
             controller: 'DayVerticalController',

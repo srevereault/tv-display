@@ -121,29 +121,29 @@ breizhcampRoom.controller('DayHorizontalController',
 
         $scope.getTalks = function() {
 
-            if ($scope.tracks) {
-                $scope.trackTalks = [];
+            if ($scope.rooms) {
+                $scope.roomsTalks = [];
 
-                angular.forEach($scope.tracks, function(track) {
+                angular.forEach($scope.rooms, function(room) {
 
-                    var trackTalk = { type: track.type };
+                    var roomTalk = { name: room.name };
 
-                    var nextTalkIndex = programService.getNextTalkIndex(track);
-                    trackTalk.currentTalk = track.talks[nextTalkIndex - 1];
-                    programService.getTalk(track.talks[nextTalkIndex - 1], function(talkDetailled) {
-                        track.talks[nextTalkIndex - 1].detail = talkDetailled;
+                    var nextTalkIndex = programService.getNextTalkIndex(room);
+                    roomTalk.currentTalk = room.talks[nextTalkIndex - 1];
+                    programService.getTalk(room.talks[nextTalkIndex - 1], function(talkDetailled) {
+                        room.talks[nextTalkIndex - 1].detail = talkDetailled;
                     });
 
-                    trackTalk.nextTalk = track.talks[nextTalkIndex];
+                    roomTalk.nextTalk = room.talks[nextTalkIndex];
 
-                    $scope.trackTalks.push(trackTalk);
+                    $scope.roomsTalks.push(roomTalk);
                 });
             }
         };
 
         $scope.zoom = function() {
             // 2 fake indexes to show all the talks together
-            $scope.highlightedIndex = ($scope.highlightedIndex + 1) % ($scope.trackTalks.length + 2);
+            $scope.highlightedIndex = ($scope.highlightedIndex + 1) % ($scope.roomsTalks.length + 2);
             $timeout($scope.zoom, 10000);
         };
 
@@ -154,7 +154,7 @@ breizhcampRoom.controller('DayHorizontalController',
         programService.getProgram(function(program) {
             $scope.program = program;
 
-            $scope.tracks = program.jours[parseInt($routeParams.dayId)].tracks;
+            $scope.rooms = program.jours[parseInt($routeParams.dayId)].rooms;
 
             $scope.getTalks();
 
@@ -164,17 +164,17 @@ breizhcampRoom.controller('DayHorizontalController',
     }
 );
 
-breizhcampRoom.controller('TrackController',
+breizhcampRoom.controller('RoomController',
     function ($scope, $routeParams, $location, $filter, $timeout, programService) {
 
         $scope.getTalks = function() {
-            if ($scope.track) {
-                var nextTalkIndex = programService.getNextTalkIndex($scope.track);
-                $scope.currentTalk = $scope.track.talks[nextTalkIndex - 1];
+            if ($scope.room) {
+                var nextTalkIndex = programService.getNextTalkIndex($scope.room);
+                $scope.currentTalk = $scope.room.talks[nextTalkIndex - 1];
                 programService.getTalk($scope.currentTalk, function(talkDetailled) {
                     $scope.currentTalk.detail = talkDetailled;
                 });
-                $scope.nextTalk = $scope.track.talks[nextTalkIndex];
+                $scope.nextTalk = $scope.room.talks[nextTalkIndex];
             }
         };
 
@@ -184,7 +184,7 @@ breizhcampRoom.controller('TrackController',
 
         programService.getProgram(function(program) {
             $scope.program = program;
-            $scope.track = $scope.program.jours[parseInt($routeParams.dayId)].tracks[parseInt($routeParams.roomId)];
+            $scope.room = $scope.program.jours[parseInt($routeParams.dayId)].rooms[parseInt($routeParams.roomId)];
 
             $scope.getTalks();
         });

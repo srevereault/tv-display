@@ -16,11 +16,30 @@ breizhcampRoom.service('programService', function ProgramService($http) {
             $http.jsonp("http://cfp.breizhcamp.org/programme/jsonp?callback=JSON_CALLBACK")
                 .success(function(data) {
                     angular.forEach(data.programme.jours, function(jour) {
+                        jour.rooms = [];
                         var indexToRemove = undefined;
                         angular.forEach(jour.tracks, function(track, index) {
                             if (track.type === "keynote") {
                                 indexToRemove = index;
                             }
+                            angular.forEach(track.talks, function(talk, index) {
+                                var roomFound = undefined;
+                                angular.forEach(jour.rooms, function(room, index) {
+                                    if (room.name === talk.room) {
+                                        roomFound = room;
+                                    }
+                                });
+                                if (roomFound === undefined) {
+                                    roomFound = {
+                                        "name":talk.room,
+                                        "talks":[]
+                                    };
+                                    jour.rooms.push(roomFound);
+                                }
+                                roomFound.talks.push(talk);
+
+
+                            });
                         });
                         if (indexToRemove !== undefined) {
                             jour.tracks.splice(indexToRemove, 1);
