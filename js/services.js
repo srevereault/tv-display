@@ -13,7 +13,7 @@ breizhcampRoom.service('programService', function ProgramService($http) {
             callback(self.program);
         }
         else {
-            $http.jsonp("http://cfp.breizhcamp.org/programme/jsonp?callback=JSON_CALLBACK")
+            $http.get("data/program")
                 .success(function(data) {
                     angular.forEach(data.programme.jours, function(jour) {
                         jour.rooms = [];
@@ -58,20 +58,8 @@ breizhcampRoom.service('programService', function ProgramService($http) {
             if (self.talks[talk.id]) {
                 callback(self.talks[talk.id]);
             } else {
-                $http.jsonp("http://cfp.breizhcamp.org/accepted/talk/" + talk.id + "/jsonp?callback=JSON_CALLBACK")
+                $http.get("data/talk/" + talk.id)
                     .success(function(data) {
-                        angular.forEach(data.speakers, function(speaker){
-                            // Optim gravatar
-                            if (speaker.avatar && speaker.avatar.indexOf("gravatar") !== -1) {
-                                speaker.avatar = speaker.avatar + "&s=200";
-                            }
-                            // Optim twitter
-                            if (speaker.avatar && speaker.avatar.indexOf("twimg") !== -1) {
-                                if (speaker.avatar.indexOf("_normal") !== -1) {
-                                    speaker.avatar = speaker.avatar.replace("_normal", "");
-                                }
-                            }
-                        });
                         self.talks[talk.id] = data;
                         callback(self.talks[talk.id]);
                     });

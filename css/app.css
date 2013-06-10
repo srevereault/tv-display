@@ -9,7 +9,7 @@ html {
 }
 
 header {
-    background: transparent url(http://www.breizhcamp.org/img/logo.png) no-repeat left center;
+    background: transparent url(../img/logo.png) no-repeat left center;
     background-size: contain;
     height: auto;
     text-align: right;
