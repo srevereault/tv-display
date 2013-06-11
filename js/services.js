@@ -158,14 +158,18 @@ breizhcampRoom.service('programService', function ProgramService($http) {
 
 breizhcampRoom.service('twitterService', function($http) {
     var self = this;
+	
+	self.tweetwallon = true;
 
     self.getTweets = function(callback) {
-
-        $http.jsonp("https://search.twitter.com/search.json?q=breizhcamp&rpp=20&callback=JSON_CALLBACK")
-            .success(function(data) {
-                callback(data.results);
-            });
-
+		if (self.tweetwallon) {
+			$http.jsonp("https://search.twitter.com/search.json?q=breizhcamp&rpp=20&callback=JSON_CALLBACK")
+				.success(function(data) {
+					callback(data.results);
+				});
+		}
+				
     }
+	
 
 });
