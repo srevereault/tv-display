@@ -22,6 +22,9 @@ breizhcampRoom.service('programService', function ProgramService($http) {
 						indexToRemove = index;
 					}
 					angular.forEach(track.talks, function(talk, index) {
+						if (talk.time.length < 5) {
+							talk.time = "0" + talk.time;
+						}
 						var roomFound = undefined;
 						angular.forEach(jour.rooms, function(room, index) {
 							if (room.name === talk.room) {
