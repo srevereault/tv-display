@@ -5,7 +5,7 @@ html {
     background-image:url(../img/background.jpg);
     background-repeat:no-repeat;
     background-size:cover;
-    background-position: bottom center;
+    background-position: top center;
 }
 
 header {
@@ -20,457 +20,52 @@ header {
     text-shadow: 2px 2px 2px #111;
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100px;
-    color: white;
-}
-
-/* Landing page */
-
-.day {
-    color: #8800BB;
-    font-size: 32px;
+h1 {
     text-align: center;
-    text-shadow: 2px 2px 2px #111;
+    margin: 5%;
 }
 
-.day a {
+h2 {
+    text-align: center;
+    margin-top: 25%;
+    clear: both;
+}
+
+.talk {
+    color: #FF6600;
+    text-shadow: 2px 2px 2px #FFF;
+    margin: 0.5%;
+    float: left;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 15px;
+    background-color: rgba(230,230,230,0.6);
+    box-shadow: 5px 5px 10px #555;
+    height: 150px;
+    overflow: hidden;
+}
+
+.talk .room {
     color: #8800BB;
     font-size: 18px;
-    text-align: center;
-    text-decoration: none;
-    text-shadow: 2px 2px 2px #111;
+    font-weight: bold;
+    line-height: 50px;
+    clear: both;
 }
 
-.day .track a {
-    color: #FF6600;
-    font-size: 20px;
-    text-align: center;
-    text-decoration: none;
-    text-shadow: 2px 2px 2px #111;
+.talk .time {
+    float: right;
+    margin: 3px 6px -10px;
+    font-size: 17px;
+    color: #444;
+    text-shadow: 1px 1px 1px #EEE;
 }
 
-.room h2 {
-    color: #8800BB;
-    font-size: 40px;
-    text-align: center;
-    text-shadow: 2px 2px 2px #111;
+.next {
+    opacity: 0.5;
+    font-size: 18px;
+    height: 120px;
 }
-
-.zoom {
-    animation:zoomAnim 1000ms linear 0ms;
-    -webkit-animation:zoomAnim 1000ms linear 0ms;
-}
-
-@keyframes zoomAnim
-{
-    from {transform: translate(1000px)}
-    to   {transform: translate(0px)}
-}
-
-@-webkit-keyframes zoomAnim /* Safari and Chrome */
-{
-    from {-webkit-transform: translate(1000px)}
-    to   {-webkit-transform: translate(0px)}
-}
-
-.talk h3 {
-    color: #FF6600;
-    font-size: 20px;
-    text-align: center;
-    margin: 0;
-    text-shadow: 2px 2px 2px #111;
-}
-
-.talk h3 small {
-    font-size: 10px;
-}
-
-.talk .speakers {
-    text-align: center;
-    margin: auto;
-    display: table;
-}
-
-.talk .speakers .speaker {
-    float: left;
-    margin-left: 20px;
-    margin-right: 20px;
-    border-top: 1px solid rgba(0, 0, 0, 0.4);
-    border-left: 1px solid rgba(0, 0, 0, 0.4);
-    width: 150px;
-    height: 100px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.talk .speakers .speaker img {
-    max-width: 100px;
-    height: 100px;
-}
-
-.talk .speakers .speaker .name {
-    background-color: rgba(0, 0, 0, 0.4);
-    color: #ffffff !important;
-    position: relative;
-    overflow: hidden;
-    bottom: 30px;
-    height: 25px;
-    line-height: 1.2em;
-}
-
-.currentTalk {
-    position: fixed;
-    top: 40%;
-    left: 0;
-    right: 0;
-}
-
-.currentTalk h3 {
-    color: #FF6600;
-    font-size: 80px;
-    text-align: center;
-    margin: 0;
-    text-shadow: 2px 2px 2px #111;
-}
-
-.currentTalk h3 small {
-    font-size: 20px;
-}
-
-.currentTalk .speakers {
-    text-align: center;
-    margin: auto;
-    display: table;
-}
-
-.currentTalk .speakers .speaker {
-    float: left;
-    margin-left: 20px;
-    margin-right: 20px;
-    border-top: 1px solid rgba(0, 0, 0, 0.4);
-    border-left: 1px solid rgba(0, 0, 0, 0.4);
-    width: 150px;
-    height: 150px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.currentTalk .speakers .speaker img {
-    max-width: 150px;
-    height: 150px;
-}
-
-.currentTalk .speakers .speaker .name {
-    background-color: rgba(0, 0, 0, 0.4);
-    color: #ffffff !important;
-    position: relative;
-    overflow: hidden;
-    bottom: 30px;
-    height: 25px;
-    line-height: 1.2em;
-}
-
-.nextTalk {
-    position: fixed;
-    bottom: 100px;
-    right: 2%;
-}
-
-.nextTalk h3 {
-    color: #FFFF66;
-    font-size: 32px;
-    margin: 0;
-    text-shadow: 2px 2px 2px #111;
-}
-
-
-/* Day version horizontale */
-
-.trackTalks {
-    text-align: center;
-}
-
-.trackTalk {
-    position:relative;
-    width: 17%;
-    height: 400px;
-    display: inline-block;
-    vertical-align: top;
-    margin: 10px;
-    background-color: rgba(0, 0, 0, 0.4);
-    border: 1px solid #444;
-    border-radius: 15px;
-}
-
-.trackTalk h2 {
-    color: #8800BB;
-    text-align: center;
-    height: 50px;
-    text-shadow: 2px 2px 2px #111;
-}
-
-@media screen and (max-width:640px ) {
-    .trackTalk h2 {
-        font-size: 14px;
-    }
-    .trackTalk .currentTalk h3 {
-        font-size: 16px;
-    }
-
-}
-
-@media screen and (min-width:640px) and (max-width:800px) {
-    .trackTalk h2 {
-        font-size: 16px;
-    }
-    .trackTalk .currentTalk h3 {
-        font-size: 18px;
-    }
-}
-
-@media screen and (min-width:800px) and (max-width:1200px) {
-    .trackTalk h2 {
-        font-size: 18px;
-    }
-    .trackTalk .currentTalk h3 {
-        font-size: 20px;
-    }
-}
-
-@media screen and (min-width:1200px) {
-    .trackTalk h2 {
-        font-size: 20px;
-    }
-    .trackTalk .currentTalk h3 {
-        font-size: 22px;
-    }
-}
-
-.trackTalk .currentTalk {
-    position: relative;
-    margin: 0;
-    top: auto;
-    height: 200px;
-}
-
-.trackTalk .currentTalk h3 {
-    color: #FF6600;
-    text-align: center;
-    margin: 5px;
-}
-
-.trackTalk .currentTalk h3 small {
-    font-size: 12px;
-}
-
-.trackTalk .speakers {
-    display: table;
-    position: absolute;
-    top: 50%;
-}
-
-.trackTalk .speaker {
-    width: 200px;
-    height: 30px;
-    float: none;
-    border: 0;
-    margin: 2px 0;
-    text-align: left;
-    background-color: transparent;
-    line-height: 30px;
-    color: #FEFEFE;
-    vertical-align: top;
-    padding-left: 10px;
-}
-
-.trackTalk .speaker .icon {
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    display: inline-block;
-    background-color: #222;
-    border: 1px solid #444;
-    vertical-align: middle;
-}
-
-.trackTalk .speaker img {
-    max-width: 30px;
-    height: 30px;
-}
-
-.trackTalk .nextTalk {
-    position: absolute;
-    bottom:10px;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-.trackTalk .nextTalk h3 {
-    font-size: 16px;
-}
-
-.trackTalk .currentTalk .talkDetail {
-    height: 6em;
-    overflow-y: hidden;
-    color: #ffffff;
-    line-height: 1.5em;
-    margin-left:10px;
-    margin-right: 10px;
-}
-
-.trackTalk .currentTalk .talkDetail p {
-    margin:0px;
-}
-
-.trackTalk .currentTalk .talkDetail ul {
-    margin:0px;
-    list-style-type: none;
-}
-
-.trackTalk .currentTalk .talkDetail a,
-.trackTalk .currentTalk .talkDetail a:hover {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.trackTalk.highlighted {
-    position: absolute;
-    left: 5%;
-    top: 120px;
-    right: 5%;
-    bottom: 100px;
-    z-index: 2;
-    width: auto;
-    height: auto;
-    background-color: #222;
-
-    animation:highlight 500ms linear 0ms;
-    -webkit-animation:highlight 500ms linear 0ms;
-}
-
-.trackTalk.highlighted h2 {
-    font-size: 28px;
-    height:1.5em;
-    margin-top:10px;
-    margin-bottom:0px;
-}
-
-.trackTalk.highlighted .currentTalk {
-}
-
-.trackTalk.highlighted .currentTalk h3 {
-    font-size: 40px;
-    margin-bottom:15px;
-}
-
-.trackTalk.highlighted .currentTalk h3 small {
-    font-size: 22px;
-}
-
-.trackTalk.highlighted .speakers {
-    bottom:10px;
-    top:auto;
-    position:absolute;
-    display: table;
-}
-
-.trackTalk.highlighted .speaker {
-    height: 70px;
-    line-height: 70px;
-    font-size: 30px;
-    width: auto;
-    vertical-align: middle;
-}
-
-.trackTalk.highlighted .speaker .icon {
-    width: 70px;
-    height: 70px;
-}
-.trackTalk.highlighted .speaker img {
-    max-width: 70px;
-    height: 70px;
-}
-
-.trackTalk.highlighted .nextTalk {
-    position: absolute;
-    bottom:10px;
-    margin-right: 5px;
-    text-align: right;
-}
-
-.trackTalk.highlighted .nextTalk h3 {
-    font-size: 28px;
-}
-
-@keyframes highlight
-{
-    from {
-        opacity: 0.1;
-        /*transform: rotate(90deg) scale(0.1);*/
-    }
-    to   {
-        opacity: 1;
-        /*transform: scale(1);*/
-    }
-}
-
-@-webkit-keyframes highlight /* Safari and Chrome */
-{
-    from {
-        opacity: 0.1;
-        /*-webkit-transform: rotate(90deg) scale(0.1);*/
-    }
-    to   {
-        opacity: 1;
-        /*-webkit-transform: scale(1);*/
-    }
-}
-
-
-/* Tweetwall */
-
-.tweetwall {
-    position: absolute;
-    width: 10000px;
-    transition: left 0.5s ease;
-    -webkit-transition: left 0.5s ease;
-}
-
-.tweet {
-    float: left;
-    width: 280px;
-    height: 80px;
-    border: 1px solid #AAA;
-    border-radius: 10px;
-    margin: 5px 10px;
-    padding: 5px;
-    background-color: #777;
-    font-size: 15px;
-}
-
-.tweet .icon {
-    float: left;
-    margin: 5px 5px 0 0;
-}
-
-.tweet .icon img {
-    height: 26px;
-}
-
-.tweet .user {
-    font-size: 12px;
-    font-style: italic;
-    color: #DEDEDE;
-}
-
-.tweet .time {
-    display: block;
-    font-size: 10px;
-    margin-top: 2px;
-    color: #DEDEDE;
+.next .room {
+    line-height: 45px;
 }
