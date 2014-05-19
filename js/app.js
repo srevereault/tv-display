@@ -13,7 +13,7 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
 
     $scope.updateTime = function() {
 
-        $scope.time = $filter('date')(new Date(), "HH:mm");
+        $scope.time = $filter('date')(new Date(), "H:mm");
         $scope.timeInSeconds = new Date().getHours() * 60 + new Date().getMinutes();
 
         $scope.talks = [];
