@@ -54,9 +54,11 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
         return parseInt(splits[0]) * 60 + parseInt(splits[1]);
     };
 
-    $http.get("data/schedule.json").success(function(schedule) {
+    window.getSchedule = function(schedule) {
         $scope.schedule = schedule;
         $scope.updateTime();
-    });
+    };
+
+    $http.jsonp("http://www.breizhcamp.org/json/schedule.json.js");
 
 });
