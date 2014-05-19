@@ -6,15 +6,26 @@ var breizhcampRoom = angular.module('BreizhcampRoom', []);
 breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeout, $filter, $location) {
 
     $scope.day = $location.search()['day'];
-    if (!$scope.day) {
-        $location.search('day','0');
-        $scope.day = 0;
-    }
 
     $scope.updateTime = function() {
+		var now = new Date();
 
-        $scope.time = $filter('date')(new Date(), "H:mm");
-        $scope.timeInSeconds = new Date().getHours() * 60 + new Date().getMinutes();
+		//select right day if not defined
+		if (!$scope.day) {
+			$scope.day = 0;
+
+			var curDay = $filter('date')(now, "dd/MM/yyyy");
+			for (var i = 0; i < $scope.schedule.programme.jours.length; i++) {
+				if (curDay == $scope.schedule.programme.jours[i].date) {
+					$scope.day = i;
+					break;
+				}
+			}
+		}
+
+
+        $scope.time = $filter('date')(now, "H:mm");
+        $scope.timeInSeconds = now.getHours() * 60 + now.getMinutes();
 
         $scope.talks = [];
         $scope.nextTalks = [];
