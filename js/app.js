@@ -16,24 +16,21 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
         $scope.time = $filter('date')(new Date(), "H:mm");
         $scope.timeInSeconds = new Date().getHours() * 60 + new Date().getMinutes();
 
+
         $scope.talks = [];
         $scope.nextTalks = [];
 
-        angular.forEach($scope.schedule.programme.jours[$scope.day].tracks, function(track) {
-            var takeNext = true;
-            angular.forEach(track.proposals, function(talk) {
 
-                if ($scope.isOnAir(talk)) {
-                    $scope.talks.push(talk);
-                }
+        angular.forEach($scope.schedule.programme.jours[$scope.day].proposals, function(talk) {
+            if ($scope.isOnAir(talk)) {
+                $scope.talks.push(talk);
+            }
 
-                if (takeNext && $scope.isAfter(talk)) {
-                    $scope.nextTalks.push(talk);
-                    takeNext = false;
-                }
-
-            });
+            if ($scope.isAfter(talk)) {
+                //$scope.nextTalks.push(talk);
+            }
         });
+
 
         $timeout($scope.updateTime, 60000);
     };
@@ -59,6 +56,9 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
         $scope.updateTime();
     };
 
-    $http.jsonp("http://www.breizhcamp.org/json/schedule.json.js");
+    $http.get("http://www.breizhcamp.org/json/schedule.json").success(function(data) {
+        $scope.schedule = data;
+        $scope.updateTime();
+    });
 
 });
