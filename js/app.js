@@ -29,17 +29,24 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
 
 
         $scope.talks = [];
+        $scope.talksByRoom = {};
         $scope.nextTalks = [];
+        $scope.nextTalksByRoom = {};
 
 
         angular.forEach($scope.schedule.programme.jours[$scope.day].proposals, function(talk) {
             if ($scope.isOnAir(talk)) {
                 $scope.talks.push(talk);
+                $scope.talksByRoom[talk.room] = talk;
             }
 
             if ($scope.isAfter(talk)) {
-                //$scope.nextTalks.push(talk);
+                $scope.nextTalksByRoom[talk.room] = talk;
             }
+        });
+
+        angular.forEach($scope.nextTalksByRoom, function(talk) {
+            $scope.nextTalks.push(talk);
         });
 
 
@@ -54,7 +61,17 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
 
     $scope.isAfter = function(talk) {
         var startInSeconds = $scope.getTimeInSeconds(talk.start);
-        return startInSeconds > $scope.timeInSeconds;
+        var afterTime = $scope.timeInSeconds;
+        var currentTalk = $scope.talksByRoom[talk.room];
+        if (currentTalk) {
+            afterTime =  $scope.getTimeInSeconds(currentTalk.end);
+        }
+        var beforeTime = $scope.getTimeInSeconds("23:59");
+        var nextTalk = $scope.nextTalksByRoom[talk.room];
+        if (nextTalk) {
+            beforeTime = $scope.getTimeInSeconds(nextTalk.start);
+        }
+        return afterTime < startInSeconds && startInSeconds < beforeTime;
     };
 
     $scope.getTimeInSeconds = function(time) {
