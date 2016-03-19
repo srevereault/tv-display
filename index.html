@@ -11,24 +11,31 @@
 </head>
 
 <body ng-controller="ScheduleController">
+
+	<video autoplay="" muted="" loop="" poster="videos/programming-ide.jpg" class="bgVideo">
+        <source src="videos/programming-ide.webm" type="video/webm">
+        <source src="videos/programming-ide.mp4" type="video/mp4">
+        <source src="videos/programming-ide.ogv" type="video/ogg">
+    </video>
+
     <header>
         <span class="time">{{time}}</span>
     </header>
 
-    <h1 ng-show="talks.length > 0">Actuellement dans les salles</h1>
+    <h1 ng-show="onAirTalks.length > 0">Sessions en cours</h1>
 
-    <article ng-repeat="talk in talks" class="talk" ng-style="{width: (100/talks.length - 1) + '%'}">
-        <div class="time">{{talk.start}}</div>
-        <div class="room">{{talk.room}}</div>
-        <div class="title">{{talk.title}}</div>
+    <article ng-repeat="talk in onAirTalks" class="talk" ng-style="{width: (100/onAirTalks.length - 1) + '%'}">
+        <div class="time">{{talk.event_start.split('T')[1].substr(0,5)}}</div>
+        <div class="room">{{roomByTrack[talk.venue]}}</div>
+        <div class="title">{{talk.name}}</div>
     </article>
 
     <h2 ng-show="nextTalks.length > 0">A venir</h2>
 
     <article ng-repeat="talk in nextTalks" class="talk next" ng-style="{width: (100/nextTalks.length - 1) + '%'}">
-        <div class="time">{{talk.start}}</div>
-        <div class="room">{{talk.room}}</div>
-        <div class="title">{{talk.title}}</div>
+        <div class="time">{{talk.event_start.split('T')[1].substr(0,5)}}</div>
+        <div class="room">{{roomByTrack[talk.venue]}}</div>
+        <div class="title">{{talk.name}}</div>
     </article>
 
     <script src="js/app.js"></script>
