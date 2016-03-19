@@ -16,11 +16,7 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
     
     $scope.days = [ '2016-03-23', '2016-03-24', '2016-03-25' ];
     
-    console.log($location.search());
-    
     $scope.day = $scope.days[$location.search()['day']];
-    
-    console.log($scope.day);
 
     $scope.updateTime = function() {
 		var now = new Date();
@@ -32,7 +28,6 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
 
         $scope.time = $filter('date')(now, "H:mm");
         $scope.timeInSeconds = now.getHours() * 60 + now.getMinutes();
-        console.log($scope.timeInSeconds);
 
 		$scope.onAirTalks = [];
         $scope.talksByRoom = {};
@@ -46,7 +41,6 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
         	}
         
             if ($scope.isOnAir(talk)) {
-            	console.log('On air ' + talk.name);
                 $scope.onAirTalks.push(talk);
                 $scope.talksByRoom[$scope.roomByTrack[talk.venue]] = talk;
             }
@@ -68,8 +62,6 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
     $scope.isOnAir = function(talk) {
         var startInSeconds = $scope.getTimeInSeconds(talk.event_start);
         var endInSeconds = $scope.getTimeInSeconds(talk.event_end);
-        console.log(startInSeconds);
-        console.log(endInSeconds);
         return startInSeconds <= $scope.timeInSeconds && endInSeconds > $scope.timeInSeconds;
     };
 
@@ -99,7 +91,7 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
         $scope.updateTime();
     };
 
-    $http.get("http://www.breizhcamp.org/json/2016/schedule.json").success(function(data) {
+    $http.get("../json/schedule.json").success(function(data) {
         $scope.talks = data;
         $scope.updateTime();
     });
