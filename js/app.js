@@ -6,15 +6,15 @@ var breizhcampRoom = angular.module('BreizhcampRoom', []);
 breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeout, $filter, $location) {
 
     $scope.roomByTrack = {
-    	'Track1': 'Amphi A',
-    	'Track2': 'Amphi B',
-    	'Track3': 'Amphi C',
-    	'Track4': 'Amphi D',
-    	'Track5 (labs)': 'Esp. Lab.',
-    	'Track6': 'Hall'
+    	'Amphi A': 'Amphi A',
+    	'Amphi B': 'Amphi B',
+    	'Amphi C': 'Amphi C',
+    	'Amphi D': 'Amphi D',
+    	'Lab': 'Esp. Lab.',
+    	'Hall': 'Hall'
     };
     
-    $scope.days = [ '2016-03-23', '2016-03-24', '2016-03-25' ];
+    $scope.days = [ '2017-04-19', '2017-04-20', '2017-04-21' ];
     
     $scope.day = $scope.days[$location.search()['day']];
 
@@ -91,7 +91,7 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
         $scope.updateTime();
     };
 
-    $http.get("../json/schedule.json").success(function(data) {
+    $http.get("./json/schedule.json").success(function(data) {
         $scope.talks = data;
         $scope.updateTime();
     });
